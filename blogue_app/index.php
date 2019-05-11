@@ -43,5 +43,12 @@
                 header("Location: index.php");
             }
             break;
+        case "MotCle":
+            $donneeMot = GetAllMot();
+            if(isset($_GET["idMot"])){
+                $donneeArticle = GetAllArticleParMotCle($_GET["idMot"]);
+            }
+            require_once("vues/Mot.php");
+            break;
         }
 ?>

@@ -11,7 +11,7 @@
         <?php
             echo "<ul>";
             echo "<li><a href=index.php>Accueil</a></li>";
-            echo "<li><a href=index.php?action=motCle>Mots clés</a></li>";
+            echo "<li><a href=index.php?action=MotCle>Mots clés</a></li>";
             if(!isset($_SESSION['utilisateur'])){
                 echo "<li><a href=index.php?action=Login>Se connecter</a></li>";
             }

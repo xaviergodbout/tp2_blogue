@@ -57,4 +57,27 @@
         
         return $varFiltre;
     }
+
+    function GetAllMot()
+    {
+        global $connexion;
+
+        $requete = "SELECT id, mot FROM motcle JOIN motarticle ON motcle.id = motarticle.idMotCle GROUP BY id ORDER BY COUNT(idMotcle) DESC";
+        $resultat = mysqli_query($connexion, $requete);
+
+        return $resultat;
+    }
+
+    function GetAllArticleParMotCle($idMot)
+    {
+        global $connexion;
+        
+        $requete = "SELECT titre, texte, nom, prenom, mot, idAuteur FROM article JOIN utilisateur ON utilisateur.username = article.idAuteur 
+        JOIN motarticle ON article.id = motarticle.idArticle JOIN motcle ON motcle.id = motarticle.idMotCle 
+        WHERE motcle.id = $idMot GROUP BY article.id ORDER BY article.id DESC";
+
+        $resultat = mysqli_query($connexion, $requete);
+
+        return $resultat;
+    }
 ?>
