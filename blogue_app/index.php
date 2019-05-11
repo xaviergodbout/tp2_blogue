@@ -50,5 +50,19 @@
             }
             require_once("vues/Mot.php");
             break;
+        case "Logout":
+            //vider le tableau $_SESSION
+            $_SESSION = array();
+            
+            //supprimer le cookie de session
+            if(isset($_COOKIE[session_name()]))
+            {
+                setcookie(session_name(), '', time() - 3600);
+            }
+            
+            //détruire la session complètement
+            session_destroy();
+            header("Location: index.php");
+            break;
         }
 ?>
