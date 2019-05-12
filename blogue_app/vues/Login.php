@@ -7,7 +7,6 @@
     <title>Login</title>
     <link rel="stylesheet" href="vues/css/reset.css">
     <link rel="stylesheet" href="vues/css/main.css">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css'>
 </head>
 <body>
     <header>
@@ -33,18 +32,18 @@
 
     <main class="login">
         <form method="post" action="index.php">
-            <div class="input-group col-md-8 col-md-offset-2">
+            <div class="input-group">
                 <input type="text" name="username">
                 <label>Nom d'utilisateur :</label>
             </div>
-            <div class="input-group col-md-8 col-md-offset-2">
+            <div class="input-group">
                 <input type="password" name="password">
                 <label>Mot de passe :</label>
             </div>
             
             <input type="hidden" name="action" value="Verifier">
             <div class="input-group">
-			    <div class="col-md-4 col-md-offset-4">
+                <div>
                     <input class="btnLogin" type="submit" value="Connexion">
                 </div>
 			</div>
