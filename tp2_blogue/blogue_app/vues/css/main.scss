@@ -1,0 +1,208 @@
+/* Importation des police */
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro');
+
+/* Mixin */
+@mixin displayFlex() {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+@mixin justifyContent() {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+@mixin transition($transition, $temp) {
+    -webkit-transition: $transition $temp;
+    transition: $transition $temp;
+}
+
+
+/*   HEADER   */
+header {
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+    background: #ffffff;
+    position: fixed;
+    width: 100vw;
+    font-family: 'Source Sans Pro', sans-serif;
+    .wrapper {
+        @include displayFlex(); 
+        @include justifyContent();
+        width: 90%;
+        margin: auto;
+        /* logo */
+        img {
+            width: 60px;
+            margin: 15px 15px 15px 0;
+        }
+        /* nav */
+        nav {
+            @include displayFlex(); 
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            ul {
+                @include displayFlex(); 
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                li {
+                    list-style: none;
+                    margin-left: 25px;
+                }
+                a {
+                    text-decoration: none;
+                    color: #656565;
+                    @include transition(color, 0.5s); 
+                    &:hover {
+                    text-decoration: underline;
+                    color: #000000;
+                    }
+                }
+            }
+        }             
+    }
+}
+
+/*   MAIN   */
+main {
+    width: 90%;
+    margin: auto;
+    padding-top: 200px;
+    article {
+        width: 60%;
+        margin: 0 auto 100px auto;
+        padding: 30px;
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            margin-bottom: 8px;
+            font-size: 1.5rem;
+        }
+        h2 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            color: #058CF2;
+        }
+        p{
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1rem;
+            color: #8e8e8e;
+        }
+        div {
+            @include displayFlex(); 
+            @include justifyContent();
+            a {
+                text-decoration: none;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-weight: bold;
+                font-size: 0.8rem;
+                margin-bottom: 20px;
+                color: #858585;
+                @include transition(color, 0.5s); 
+                &:hover {
+                text-decoration: underline;
+                color: #000000;
+                }
+            }
+        }
+    }
+
+}
+
+
+/*   PAGE LOGIN   */
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+        padding: 100px;
+        width: 600px;
+        .input-group {
+            margin-bottom: 35px;
+            position: relative;
+            input[type=text], input[type=password]{
+                display: block;
+                width: 100%;
+                height: 30px;
+                border: 0;
+                border-bottom: 2px solid #dddddd;
+                padding: 1.6rem 0;
+                box-sizing: border-box;
+                background: none;
+                outline: none;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 1rem;
+                color: #010101;
+                transition: all 0.2s ease-in;
+                &:focus{
+                    border-bottom: 2px solid #058CF2;
+                }
+            }
+            label{
+                position: absolute;
+                top: 35%;
+                font-family: 'Source Sans Pro', sans-serif;
+                color: #858585;
+                pointer-events: none;
+                transition: all 0.3s ease;
+           } 
+           .btnLogin {
+                display: block;
+                width: 100%;
+                padding: 15px 0;
+                color: white;
+                cursor: pointer;
+                outline: none;
+                border: none;
+                border-radius: 35px;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 0.8rem;
+                box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.2);
+                transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+                background: #058CF2;
+                &:hover {
+                box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
+                background-color: #047de6;
+                }
+            }
+        }
+        .input-group input:focus + label,
+        .input-group input.has-value + label{
+            top: -10px;
+            font-size: 10px;
+        }
+    }
+}
+
+/*   PAGE MOT-CLÉS   */
+.mot {
+    .listeMot {
+        border-bottom: 1px solid #dddddd;
+        padding-bottom: 20px;
+        margin-bottom: 50px;
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        a {
+            text-decoration: none;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            color: #858585;
+            padding-right: 10px;
+            @include transition(color, 0.5s); 
+            &:hover {
+            text-decoration: underline;
+            color: #000000;
+            }
+        }
+    }
+}
