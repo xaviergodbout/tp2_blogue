@@ -1,0 +1,242 @@
+@charset "UTF-8";
+/* Importation des police */
+@import url("https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro");
+/* Mixin */
+/*   HEADER   */
+header {
+  -webkit-box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+          box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+  background: #ffffff;
+  position: fixed;
+  width: 100vw;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+header .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  /* logo */
+  /* nav */
+}
+
+header .wrapper img {
+  width: 60px;
+  margin: 15px 15px 15px 0;
+}
+
+header .wrapper nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+header .wrapper nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+header .wrapper nav ul li {
+  list-style: none;
+  margin-left: 25px;
+}
+
+header .wrapper nav ul a {
+  text-decoration: none;
+  color: #656565;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+header .wrapper nav ul a:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
+/*   MAIN   */
+main {
+  width: 90%;
+  margin: auto;
+  padding-top: 200px;
+}
+
+main article {
+  width: 60%;
+  margin: 0 auto 100px auto;
+  padding: 30px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+}
+
+main article h1 {
+  font-family: 'Libre Baskerville', serif;
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+}
+
+main article h2 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  color: #058CF2;
+}
+
+main article p {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  color: #8e8e8e;
+}
+
+main article div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+main article div a {
+  text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  color: #858585;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+main article div a:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
+/*   PAGE LOGIN   */
+.login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login form {
+  padding: 100px;
+  width: 600px;
+}
+
+.login form .input-group {
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.login form .input-group input[type=text], .login form .input-group input[type=password] {
+  display: block;
+  width: 100%;
+  height: 30px;
+  border: 0;
+  border-bottom: 2px solid #dddddd;
+  padding: 1.6rem 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: none;
+  outline: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  color: #010101;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.login form .input-group input[type=text]:focus, .login form .input-group input[type=password]:focus {
+  border-bottom: 2px solid #058CF2;
+}
+
+.login form .input-group label {
+  position: absolute;
+  top: 35%;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #858585;
+  pointer-events: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.login form .input-group .btnLogin {
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 35px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 0.8rem;
+  -webkit-box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.2);
+          box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.2);
+  -webkit-transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+  transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+  background: #058CF2;
+}
+
+.login form .input-group .btnLogin:hover {
+  -webkit-box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
+          box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
+  background-color: #047de6;
+}
+
+.login form .input-group input:focus + label,
+.login form .input-group input.has-value + label {
+  top: -10px;
+  font-size: 10px;
+}
+
+/*   PAGE MOT-CLÉS   */
+.mot .listeMot {
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+.mot .listeMot h1 {
+  font-family: 'Libre Baskerville', serif;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.mot .listeMot a {
+  text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  color: #858585;
+  padding-right: 10px;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+.mot .listeMot a:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+/*# sourceMappingURL=main.css.map */

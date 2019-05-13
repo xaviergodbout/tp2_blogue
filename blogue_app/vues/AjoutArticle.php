@@ -29,25 +29,17 @@
             </nav>
         </div>
     </header>
-
-    <main class="accueil">
-        <?php
-            while($rangeeArticle = mysqli_fetch_assoc($donneeArticle)){
-                echo "<article>";
-                echo "<div>";
-                echo "<h1>" . $rangeeArticle['titre'] . "</h1>";
-                if(isset($_SESSION['utilisateur'])){
-                    if($_SESSION['utilisateur'] == $rangeeArticle['idAuteur']){
-                        echo "<a href='index.php?action=ModifArticle'>Modifier</a>";
-                    }
-                }
-                echo "</div>";
-                    echo "<h2>Par : " . $rangeeArticle['nom'] . " " . $rangeeArticle['prenom'] . "</h2>";
-                echo "<p>" . $rangeeArticle['texte'] . "</p>";
-                echo "</article>";
-            }
-        ?>
+    <main class="ajout">
+        <form method="post" action="index.php" autocomplete="off">
+            <label>Titre *</label>
+            <input type="text" name="titre">
+            <label>Texte *</label>
+            <textarea name="texte"></textarea>
+            <label>Mots clés</label>
+            <input type="text" name="motCle">
+            <input type="hidden" name="action" value="ValideAjout">
+            <input type="submit" value="Ajouter">
+        </form>
     </main>
-    
 </body>
 </html>

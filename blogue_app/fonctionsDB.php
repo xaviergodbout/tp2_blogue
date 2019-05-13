@@ -21,7 +21,7 @@
     {
         global $connexion;
         
-        $requete = "SELECT titre, texte, nom, prenom, mot, idAuteur FROM article JOIN utilisateur ON utilisateur.username = article.idAuteur JOIN motarticle ON article.id = motarticle.idArticle JOIN motcle ON motcle.id = motarticle.idMotCle GROUP BY article.id ORDER BY article.id DESC";
+        $requete = "SELECT titre, texte, nom, prenom, idAuteur FROM article JOIN utilisateur ON utilisateur.username = article.idAuteur GROUP BY article.id ORDER BY article.id DESC";
         $resultat = mysqli_query($connexion, $requete);
 
         return $resultat;
@@ -53,7 +53,7 @@
         $varFiltre = mysqli_real_escape_string($connexion, $var);
         //appliquer d'autres filtres
         //se prémunir contre les attaques de type XSS (cross-site scripting)
-        $varFiltre = strip_tags($varFiltre, "<a><b><em>");
+        $varFiltre = strip_tags($varFiltre, "<a><b><em><br>");
         
         return $varFiltre;
     }
@@ -79,5 +79,78 @@
         $resultat = mysqli_query($connexion, $requete);
 
         return $resultat;
+    }
+
+    function AjoutArticle($titre, $texte, $auteur){
+        
+        global $connexion;
+        
+        $requete = "INSERT INTO article (titre, texte, idAuteur) VALUES ('" . filtre($titre) . "', '" . filtre($texte) . "', '" . filtre($auteur) . "')";
+
+        $resultat = mysqli_query($connexion, $requete);
+    }
+
+    function GetAllMotCle(){
+
+        global $connexion;
+
+        $requete = "SELECT id, mot FROM motcle";
+        
+        $resultat = mysqli_query($connexion, $requete);
+
+        return $resultat;
+    }
+
+    function idDernierArticle(){
+        global $connexion;
+        
+        $requete = "SELECT MAX(id) AS id FROM article";
+        
+        $resultat = mysqli_query($connexion, $requete);
+
+        return $resultat;
+    }
+
+    function GetMotId($motCle){
+
+        global $connexion;
+        
+        $requete = "SELECT id FROM motCle WHERE mot = '$motCle'";
+        
+        $resultat = mysqli_query($connexion, $requete);
+
+        return $resultat;
+    }
+
+    function AjoutMotCle($mot){
+
+        global $connexion;
+
+        $liste_mot = array_map('trim', explode('&', $mot));
+
+        foreach($liste_mot as $mot_cle){
+            $a_id_mot = GetMotId($mot_cle);
+            $id_mot = mysqli_fetch_assoc($a_id_mot);
+
+            if(mysqli_num_rows($a_id_mot)==0){
+
+                $requete = "INSERT INTO motcle (mot) VALUES ('" . filtre($mot_cle) . "')";
+
+                $resultat = mysqli_query($connexion, $requete);
+            }
+        }
+
+        $liste = GetAllMotCle();
+        $dernier_article = idDernierArticle();
+        $article = mysqli_fetch_assoc($dernier_article);
+
+        foreach($liste_mot as $mot_cle){
+            $a_id_mot = GetMotId($mot_cle);
+            $id_mot = mysqli_fetch_assoc($a_id_mot);
+
+            $requete = "INSERT INTO motarticle (idArticle, idMotCle) VALUES ('" . $article['id'] . "', '" . $id_mot['id'] . "')";
+                    
+            $resultat = mysqli_query($connexion, $requete);
+        }
     }
 ?>
