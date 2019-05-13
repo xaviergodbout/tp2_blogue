@@ -111,17 +111,6 @@
         return $resultat;
     }
 
-    function GetMotId($motCle){
-
-        global $connexion;
-        
-        $requete = "SELECT id FROM motCle WHERE mot = '$motCle'";
-        
-        $resultat = mysqli_query($connexion, $requete);
-
-        return $resultat;
-    }
-
     function AjoutMotCle($mot){
 
         global $connexion;
@@ -129,13 +118,16 @@
         $liste_mot = array_map('trim', explode('&', $mot));
 
         foreach($liste_mot as $mot_cle){
-            $a_id_mot = GetMotId($mot_cle);
-            $id_mot = mysqli_fetch_assoc($a_id_mot);
-
-            if(mysqli_num_rows($a_id_mot)==0){
-
+            $liste = GetAllMotCle();
+            $mot_valide = true;
+            while($rangee = mysqli_fetch_assoc($liste)){
+                if($rangee['mot'] == $mot_cle){
+                    $mot_valide = false;
+                }
+            }
+            if($mot_valide){
                 $requete = "INSERT INTO motcle (mot) VALUES ('" . filtre($mot_cle) . "')";
-
+                    
                 $resultat = mysqli_query($connexion, $requete);
             }
         }
@@ -144,13 +136,14 @@
         $dernier_article = idDernierArticle();
         $article = mysqli_fetch_assoc($dernier_article);
 
-        foreach($liste_mot as $mot_cle){
-            $a_id_mot = GetMotId($mot_cle);
-            $id_mot = mysqli_fetch_assoc($a_id_mot);
-
-            $requete = "INSERT INTO motarticle (idArticle, idMotCle) VALUES ('" . $article['id'] . "', '" . $id_mot['id'] . "')";
+        while($rangee = mysqli_fetch_assoc($liste)){
+            foreach($liste_mot as $mot_cle){
+                if($rangee['mot'] == $mot_cle){
+                    $requete = "INSERT INTO motarticle (idArticle, idMotCle) VALUES ('" . $article['id'] . "', '" . $rangee['id'] . "')";
                     
-            $resultat = mysqli_query($connexion, $requete);
+                    $resultat = mysqli_query($connexion, $requete);
+                }
+            }
         }
     }
 ?>
