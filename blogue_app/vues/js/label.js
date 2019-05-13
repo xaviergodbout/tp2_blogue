@@ -2,12 +2,12 @@
             var inputs = document.querySelectorAll('.input-group input');
 
             inputs.forEach((input) => {
-                input.addEventListener('focusout', (e) => {
-                    if (e.target.value === "") {
-                        return e.target.classList.remove('has-value');
+                input.addEventListener('focusout', function(event) {
+                    if (event.target.value == "") {
+                        return event.target.classList.remove('has-value');
                     }
 
-                    return e.target.classList.add('has-value');
+                    return event.target.classList.add('has-value');
                 });
             });
         })();
