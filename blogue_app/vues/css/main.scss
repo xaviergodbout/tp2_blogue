@@ -16,6 +16,25 @@
     -webkit-transition: $transition $temp;
     transition: $transition $temp;
 }
+@mixin btn() {
+    display: block;
+    width: 200px;
+    padding: 15px 0;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 35px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.8rem;
+    box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.2);
+    transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+    background: #058CF2;
+    &:hover {
+    box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
+    background-color: #047de6;
+    }
+}
 
 
 /*   HEADER   */
@@ -151,23 +170,13 @@ main {
                 pointer-events: none;
                 transition: all 0.3s ease;
            } 
-           .btnLogin {
-                display: block;
+           div {
                 width: 100%;
-                padding: 15px 0;
-                color: white;
-                cursor: pointer;
-                outline: none;
-                border: none;
-                border-radius: 35px;
-                font-family: 'Source Sans Pro', sans-serif;
-                font-size: 0.8rem;
-                box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.2);
-                transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
-                background: #058CF2;
-                &:hover {
-                box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
-                background-color: #047de6;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            .btnLogin {
+                    @include btn();
                 }
             }
         }
@@ -188,12 +197,11 @@ main {
         h1 {
             font-family: 'Libre Baskerville', serif;
             margin-bottom: 8px;
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
         a {
             text-decoration: none;
             font-family: 'Source Sans Pro', sans-serif;
-            font-weight: bold;
             font-size: 0.8rem;
             margin-bottom: 20px;
             color: #858585;
@@ -203,6 +211,10 @@ main {
             text-decoration: underline;
             color: #000000;
             }
+        }
+        a:nth-of-type(-n+10) {
+            font-size: 1rem;
+            font-weight: bold;
         }
     }
 }

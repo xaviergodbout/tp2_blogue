@@ -180,9 +180,22 @@ main article div a:hover {
   transition: all 0.3s ease;
 }
 
-.login form .input-group .btnLogin {
-  display: block;
+.login form .input-group div {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login form .input-group div .btnLogin {
+  display: block;
+  width: 200px;
   padding: 15px 0;
   color: white;
   cursor: pointer;
@@ -198,7 +211,7 @@ main article div a:hover {
   background: #058CF2;
 }
 
-.login form .input-group .btnLogin:hover {
+.login form .input-group div .btnLogin:hover {
   -webkit-box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
           box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
   background-color: #047de6;
@@ -220,13 +233,12 @@ main article div a:hover {
 .mot .listeMot h1 {
   font-family: 'Libre Baskerville', serif;
   margin-bottom: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .mot .listeMot a {
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: bold;
   font-size: 0.8rem;
   margin-bottom: 20px;
   color: #858585;
@@ -238,5 +250,10 @@ main article div a:hover {
 .mot .listeMot a:hover {
   text-decoration: underline;
   color: #000000;
+}
+
+.mot .listeMot a:nth-of-type(-n+10) {
+  font-size: 1rem;
+  font-weight: bold;
 }
 /*# sourceMappingURL=main.css.map */
