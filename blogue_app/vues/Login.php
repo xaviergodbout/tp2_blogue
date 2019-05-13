@@ -31,7 +31,7 @@
     </header>
 
     <main class="login">
-        <form method="post" action="index.php">
+        <form method="post" action="index.php" autocomplete="off">
             <div class="input-group">
                 <input type="text" name="username">
                 <label>Nom d'utilisateur :</label>
