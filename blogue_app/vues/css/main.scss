@@ -164,10 +164,20 @@ main {
             textarea {
                 width: 100%;
                 height: 300px;
-            }
-            label {
                 font-family: 'Source Sans Pro', sans-serif;
                 font-size: 1rem;
+                border: 0;
+                border: 1px solid #dddddd;
+                border-radius: 3px;
+                padding: 10px;
+                box-sizing: border-box;
+                background: none;
+                outline: none;
+                resize: none;
+                overflow: auto;
+                &:focus{
+                    border: 1px solid #058CF2;
+                }
             }
            div {
                 width: 100%;

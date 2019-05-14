@@ -42,8 +42,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label>Texte *</label>
-                    <textarea name="texte"></textarea>
+                    <textarea name="texte" placeholder="Votre texte..."></textarea>
                 </div>
 
                 <div class="input-group">
