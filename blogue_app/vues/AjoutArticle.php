@@ -36,7 +36,7 @@
         </div>
 
         <div class="ajout">
-            <form method="post" action="index.php" autocomplete="off">
+            <form method="post" action="index.php">
                 <div class="input-group">
                     <input type="text" name="titre" placeholder="Titre">
                 </div>

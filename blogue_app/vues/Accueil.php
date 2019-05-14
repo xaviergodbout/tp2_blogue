@@ -34,7 +34,7 @@
         <?php
             while($rangeeArticle = mysqli_fetch_assoc($donneeArticle)){
                 echo "<article>";
-                echo "<div>";
+                echo "<div class='modif'>";
                 echo "<h1>" . $rangeeArticle['titre'] . "</h1>";
                 if(isset($_SESSION['utilisateur'])){
                     if($_SESSION['utilisateur'] == $rangeeArticle['idAuteur']){
@@ -46,10 +46,11 @@
                 echo "<p>" . $rangeeArticle['texte'] . "</p>";
 
                 $donneeMot = GetMotCleById($rangeeArticle['id']);
-                
+                echo "<div class='motCle'>";
                     while($rangeeMot = mysqli_fetch_assoc($donneeMot)){
                         echo "<a href='index.php?action=MotCle&idMot=" . $rangeeMot["id"] . "'>" . $rangeeMot["mot"] . "</a> ";
                     }
+                echo "</div>";
                 echo "</article>";
             }
         ?>

@@ -97,10 +97,11 @@ main article h2 {
 main article p {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
+  line-height: 1.4rem;
   color: #8e8e8e;
 }
 
-main article div {
+main article .modif {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -109,7 +110,7 @@ main article div {
   justify-content: space-between;
 }
 
-main article div a {
+main article .modif a {
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
@@ -120,13 +121,36 @@ main article div a {
   transition: color 0.5s;
 }
 
-main article div a:hover {
+main article .modif a:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
+main article .motCle {
+  border-top: 1px solid #dddddd;
+  height: 100%;
+  padding: 10px 0;
+  margin-top: 30px;
+}
+
+main article .motCle a {
+  text-decoration: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #858585;
+  padding-right: 10px;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+main article .motCle a:hover {
   text-decoration: underline;
   color: #000000;
 }
 
 /*   FORMS   */
-.login, .ajout {
+.login, .ajout, .modif {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -138,17 +162,17 @@ main article div a:hover {
           justify-content: center;
 }
 
-.login form, .ajout form {
+.login form, .ajout form, .modif form {
   padding: 100px;
   width: 500px;
 }
 
-.login form .input-group, .ajout form .input-group {
+.login form .input-group, .ajout form .input-group, .modif form .input-group {
   margin-bottom: 35px;
   position: relative;
 }
 
-.login form .input-group input[type=text], .login form .input-group input[type=password], .ajout form .input-group input[type=text], .ajout form .input-group input[type=password] {
+.login form .input-group input[type=text], .login form .input-group input[type=password], .ajout form .input-group input[type=text], .ajout form .input-group input[type=password], .modif form .input-group input[type=text], .modif form .input-group input[type=password] {
   display: block;
   width: 100%;
   height: 30px;
@@ -164,11 +188,11 @@ main article div a:hover {
   color: #010101;
 }
 
-.login form .input-group input[type=text]:focus, .login form .input-group input[type=password]:focus, .ajout form .input-group input[type=text]:focus, .ajout form .input-group input[type=password]:focus {
+.login form .input-group input[type=text]:focus, .login form .input-group input[type=password]:focus, .ajout form .input-group input[type=text]:focus, .ajout form .input-group input[type=password]:focus, .modif form .input-group input[type=text]:focus, .modif form .input-group input[type=password]:focus {
   border-bottom: 1px solid #058CF2;
 }
 
-.login form .input-group textarea, .ajout form .input-group textarea {
+.login form .input-group textarea, .ajout form .input-group textarea, .modif form .input-group textarea {
   width: 100%;
   height: 300px;
   font-family: 'Source Sans Pro', sans-serif;
@@ -185,11 +209,11 @@ main article div a:hover {
   overflow: auto;
 }
 
-.login form .input-group textarea:focus, .ajout form .input-group textarea:focus {
+.login form .input-group textarea:focus, .ajout form .input-group textarea:focus, .modif form .input-group textarea:focus {
   border: 1px solid #058CF2;
 }
 
-.login form .input-group div, .ajout form .input-group div {
+.login form .input-group div, .ajout form .input-group div, .modif form .input-group div {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -202,7 +226,7 @@ main article div a:hover {
           justify-content: center;
 }
 
-.login form .input-group div .btn, .ajout form .input-group div .btn {
+.login form .input-group div .btn, .ajout form .input-group div .btn, .modif form .input-group div .btn {
   display: block;
   width: 200px;
   padding: 15px 0;
@@ -220,13 +244,13 @@ main article div a:hover {
   background: #058CF2;
 }
 
-.login form .input-group div .btn:hover, .ajout form .input-group div .btn:hover {
+.login form .input-group div .btn:hover, .ajout form .input-group div .btn:hover, .modif form .input-group div .btn:hover {
   -webkit-box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
           box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
   background-color: #047de6;
 }
 
-.ajout form {
+.ajout form, .modif form {
   padding: 40px;
   width: 50%;
 }
@@ -263,5 +287,10 @@ main article div a:hover {
 .titrePage a:nth-of-type(-n+10) {
   font-size: 1rem;
   font-weight: bold;
+}
+
+.titrePage .actif {
+  text-decoration: underline;
+  color: #000000;
 }
 /*# sourceMappingURL=main.css.map */

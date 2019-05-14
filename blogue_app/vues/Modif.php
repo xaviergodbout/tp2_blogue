@@ -30,27 +30,30 @@
         </div>
     </header>
 
-    <main class="Modif">
-            <?php
-                echo "<div class='ModifArticle'>";
-                echo "<h1>Modifier un Article</h1>";
-                
-                echo "</div>";
-                if(isset($_SESSION["utilisateur"]))
-                {
-                    $rangeeArticle = mysqli_fetch_assoc($donneeArticle);
-                    echo "<form method='POST' action='index.php'>";
-                    echo "<p>Titre: </p><input name='titreModif' value='" . $rangeeArticle['titre'] . "'></input><br>";
-                    echo "<p>Texte de l'Article: </p><textarea name='texteModif' rows='20' cols='160'>" . $rangeeArticle['texte'] . "</textarea><br>";
-                    
-                    echo "<input type='hidden' name='idArticle' value='" . $rangeeArticle['id'] . "'></input>";
-                    echo "<input type='hidden' name='action' value='ValideModifArticle'/><br>
-                    <input type='submit' value='Modifier'/>";
-                    echo "</form>";
-                }
-                
+    <main>
+        <div class='titrePage'>
+            <h1>Modifier un article</h1>
+        </div>
+        <div class="modif">
+            <form method='POST' action='index.php'>
+                <?php  $rangeeArticle = mysqli_fetch_assoc($donneeArticle);?>
+                <div class="input-group">
+                    <input type="text" name='titreModif' value='<?php echo $rangeeArticle['titre'] ?>'></input>
+                </div>
+                <div class="input-group">
+                    <textarea name='texteModif' rows='20' cols='160'>'<?php echo $rangeeArticle['texte'] ?>'</textarea>
+                </div>
 
-            ?>
+                <input type='hidden' name='idArticle' value='<?php echo $rangeeArticle['id'] ?>'></input>
+                <input type='hidden' name='action' value='ValideModifArticle'/>
+
+                <div class="input-group">
+                    <div>
+                        <input class="btn" type='submit' value='Modifier'>
+                    </div>
+                </div>
+            </form>
+        </div>
     </main>
 </body>
 </html>

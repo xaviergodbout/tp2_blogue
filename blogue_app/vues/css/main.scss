@@ -109,9 +109,10 @@ main {
         p{
             font-family: 'Source Sans Pro', sans-serif;
             font-size: 1rem;
+            line-height: 1.4rem;
             color: #8e8e8e;
         }
-        div {
+        .modif {
             @include displayFlex(); 
             @include justifyContent();
             a {
@@ -128,13 +129,32 @@ main {
                 }
             }
         }
+        .motCle {
+            border-top: 1px solid #dddddd;
+            height: 100%;
+            padding: 10px 0;
+            margin-top: 30px;
+            a {
+                text-decoration: none;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-weight: bold;
+                font-size: 0.8rem;
+                color: #858585;
+                padding-right: 10px;
+                @include transition(color, 0.5s); 
+                &:hover {
+                text-decoration: underline;
+                color: #000000;
+                }
+            }
+        }
     }
 
 }
 
 
 /*   FORMS   */
-.login, .ajout {
+.login, .ajout, .modif{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -191,7 +211,7 @@ main {
         }
     }
 }
-.ajout {
+.ajout, .modif {
     form {
         padding: 40px;
         width: 50%; 
@@ -224,5 +244,9 @@ main {
     a:nth-of-type(-n+10) {
         font-size: 1rem;
         font-weight: bold;
+    }
+    .actif {
+        text-decoration: underline;
+        color: #000000;
     }
 }
