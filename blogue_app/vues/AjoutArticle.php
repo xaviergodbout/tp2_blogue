@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="text" name="motCle" placeholder="Mots clés (e.g. Sport&Hockey&Canadiens)">
+                    <input type="text" name="motcle" placeholder="Mots clés (e.g. Sport&Hockey&Canadiens)">
                 </div>
 
                 <input type="hidden" name="action" value="ValideAjout">

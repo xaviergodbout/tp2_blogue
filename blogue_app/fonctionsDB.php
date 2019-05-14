@@ -15,6 +15,7 @@
         return $c;
     }
 
+
     $connexion = connectDB();
 
     function GetAllArticle()
@@ -111,11 +112,11 @@
         return $resultat;
     }
 
-    function GetMotId($motCle){
+    function GetMotId($mot_cle){
 
         global $connexion;
         
-        $requete = "SELECT id FROM motCle WHERE mot = '$motCle'";
+        $requete = "SELECT id FROM motcle WHERE mot = '" . $mot_cle . "'";
         
         $resultat = mysqli_query($connexion, $requete);
 
@@ -128,6 +129,9 @@
 
         $liste_mot = array_map('trim', explode('&', $mot));
 
+        $dernier_article = idDernierArticle();
+        $article = mysqli_fetch_assoc($dernier_article);
+
         foreach($liste_mot as $mot_cle){
             $a_id_mot = GetMotId($mot_cle);
             $id_mot = mysqli_fetch_assoc($a_id_mot);
@@ -138,13 +142,7 @@
 
                 $resultat = mysqli_query($connexion, $requete);
             }
-        }
 
-        $liste = GetAllMotCle();
-        $dernier_article = idDernierArticle();
-        $article = mysqli_fetch_assoc($dernier_article);
-
-        foreach($liste_mot as $mot_cle){
             $a_id_mot = GetMotId($mot_cle);
             $id_mot = mysqli_fetch_assoc($a_id_mot);
 

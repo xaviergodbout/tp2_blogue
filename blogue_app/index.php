@@ -72,12 +72,12 @@
             break;
         case "ValideAjout":
             if(isset($_SESSION['utilisateur'])){
-                if(isset($_POST['titre']) && isset($_POST['texte']) && isset($_POST['motCle'])){
+                if(isset($_POST['titre']) && isset($_POST['texte']) && isset($_POST['motcle'])){
                     if(trim($_POST['titre']) != "" && trim($_POST['texte']) != ""){
                         AjoutArticle($_POST['titre'], $_POST['texte'], $_SESSION["utilisateur"]);
                         
-                        if(trim($_POST['motCle']) != ""){
-                            AjoutMotCle($_POST['motCle']);
+                        if(trim($_POST['motcle']) != ""){
+                            AjoutMotCle($_POST['motcle']);
                         }
                         header("Location: index.php");
                     }
