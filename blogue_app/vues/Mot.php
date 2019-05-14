@@ -35,7 +35,14 @@
                 echo "<div class='titrePage'>";
                 echo "<h1>Liste de mot-clés</h1>";
                 while($rangeeMot = mysqli_fetch_assoc($donneeMot)){
-                    echo "<a href='index.php?action=MotCle&idMot=" . $rangeeMot["id"] . "'>" . $rangeeMot["mot"] . "</a> ";
+                    $actif= "";
+                    if(isset($_GET['idMot'])){
+                        if($rangeeMot["id"] == $_GET['idMot']){
+                            $actif = "class='actif'";
+                        }
+                    }
+                    echo "<a " . $actif . " href='index.php?action=MotCle&idMot=" . $rangeeMot["id"] . "'>" . $rangeeMot["mot"] . "</a> ";
+                    $actif= "";
                 }
                 echo "</div>";
                 if(isset($donneeArticle)){
