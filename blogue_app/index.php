@@ -94,6 +94,34 @@
                 require_once("vues/AjoutArticle.php");
             }
             break;
+        //FX case ModifArticle pour se rendre à la page Modification d'article et passer les info de l'article que l'on veut modifier
+        case "ModifArticle":
+            if(isset($_SESSION['utilisateur']))
+            {
+                $donneeArticle = GetThisArticleModif($_GET["idArticle"]);
+                require_once("vues/Modif.php");
+            }
+            else
+            {
+                require_once("vues/Login.php");
+            }
+            break;
+        
+        // FX case Validation de la modification de l'article 
+        case "ValideModifArticle":
+            if(isset($_SESSION['utilisateur'])){
+                if(isset($_POST["titreModif"]) && isset($_POST["texteModif"]) && isset($_POST['idArticle']))
+                {
+                    ModifNow($_POST["idArticle"], $_POST["titreModif"], $_POST["texteModif"]);
+                    header("Location: index.php");
+                }
+                else
+                {
+                    $erreurs = "Veuillez remplir tous les champs obligatoires.";
+                    require_once("vues/Modif.php");
+                }
+            }
+            break;
         case "Logout":
             //vider le tableau $_SESSION
             $_SESSION = array();

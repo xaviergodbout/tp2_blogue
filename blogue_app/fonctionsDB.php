@@ -161,4 +161,30 @@
             $resultat = mysqli_query($connexion, $requete);
         }
     }
+
+    // FX obtenir les info de l'Article à modifier
+    function GetThisArticleModif($idArticle)
+    {
+        global $connexion;
+        
+        $requete = "SELECT article.id, titre, texte, nom, prenom FROM article JOIN utilisateur 
+        ON utilisateur.username = article.idAuteur
+        WHERE article.id =  '" . $idArticle . "' ";
+
+        $resultat = mysqli_query($connexion, $requete);
+
+        return $resultat;
+    }
+    // FX modifier l'Article selon les inputs filtrés
+    function ModifNow($idArticle, $titreModif, $texteModif)
+    {
+        global $connexion;
+        
+        $requete = "UPDATE article SET titre='" . filtre($titreModif) . "', texte='" . filtre($texteModif) . "' WHERE id=" . filtre($idArticle) . "";
+        $resultat = mysqli_query($connexion, $requete);
+
+        return $resultat;
+    }
+
+    
 ?>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Accueil</title>
+    <title>Modifier un Article</title>
     <link rel="stylesheet" href="vues/css/reset.css">
     <link rel="stylesheet" href="vues/css/main.css">
 </head>
@@ -30,30 +30,27 @@
         </div>
     </header>
 
-    <main class="accueil">
-        <?php
-            while($rangeeArticle = mysqli_fetch_assoc($donneeArticle)){
-                echo "<article>";
-                echo "<div>";
-                echo "<h1>" . $rangeeArticle['titre'] . "</h1>";
-                if(isset($_SESSION['utilisateur'])){
-                    if($_SESSION['utilisateur'] == $rangeeArticle['idAuteur']){
-                        echo "<a href='index.php?action=ModifArticle&idArticle=" . $rangeeArticle['id'] . "'>Modifier</a>";
-                    }
-                }
-                echo "</div>";
-                    echo "<h2>Par : " . $rangeeArticle['nom'] . " " . $rangeeArticle['prenom'] . "</h2>";
-                echo "<p>" . $rangeeArticle['texte'] . "</p>";
-
-                $donneeMot = GetMotCleById($rangeeArticle['id']);
+    <main class="Modif">
+            <?php
+                echo "<div class='ModifArticle'>";
+                echo "<h1>Modifier un Article</h1>";
                 
-                    while($rangeeMot = mysqli_fetch_assoc($donneeMot)){
-                        echo "<a href='index.php?action=MotCle&idMot=" . $rangeeMot["id"] . "'>" . $rangeeMot["mot"] . "</a> ";
-                    }
-                echo "</article>";
-            }
-        ?>
+                echo "</div>";
+                if(isset($_SESSION["utilisateur"]))
+                {
+                    $rangeeArticle = mysqli_fetch_assoc($donneeArticle);
+                    echo "<form method='POST' action='index.php'>";
+                    echo "<p>Titre: </p><input name='titreModif' value='" . $rangeeArticle['titre'] . "'></input><br>";
+                    echo "<p>Texte de l'Article: </p><textarea name='texteModif' rows='20' cols='160'>" . $rangeeArticle['texte'] . "</textarea><br>";
+                    
+                    echo "<input type='hidden' name='idArticle' value='" . $rangeeArticle['id'] . "'></input>";
+                    echo "<input type='hidden' name='action' value='ValideModifArticle'/><br>
+                    <input type='submit' value='Modifier'/>";
+                    echo "</form>";
+                }
+                
+
+            ?>
     </main>
-    
 </body>
 </html>

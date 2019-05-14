@@ -45,7 +45,7 @@
                         echo "<h1>" . $rangeeArticle['titre'] . "</h1>";
                         if(isset($_SESSION['utilisateur'])){
                             if($_SESSION['utilisateur'] == $rangeeArticle['idAuteur']){
-                                echo "<a href='index.php?action=ModifArticle'>Modifier</a>";
+                                echo "<a href='index.php?action=ModifArticle&idArticle=" . $rangeeArticle['id'] . "'>Modifier</a>";
                             }
                         }
                         echo "</div>";
