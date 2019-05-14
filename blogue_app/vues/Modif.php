@@ -41,7 +41,7 @@
                     <input type="text" name='titreModif' value='<?php echo $rangeeArticle['titre'] ?>'></input>
                 </div>
                 <div class="input-group">
-                    <textarea name='texteModif' rows='20' cols='160'>'<?php echo $rangeeArticle['texte'] ?>'</textarea>
+                    <textarea name='texteModif' rows='20' cols='160'><?php echo $rangeeArticle['texte'] ?></textarea>
                 </div>
 
                 <input type='hidden' name='idArticle' value='<?php echo $rangeeArticle['id'] ?>'></input>
