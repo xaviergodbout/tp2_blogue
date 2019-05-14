@@ -69,7 +69,7 @@ header .wrapper nav ul a:hover {
 main {
   width: 90%;
   margin: auto;
-  padding-top: 200px;
+  padding-top: 150px;
 }
 
 main article {
@@ -125,8 +125,8 @@ main article div a:hover {
   color: #000000;
 }
 
-/*   PAGE LOGIN   */
-.login {
+/*   FORMS   */
+.login, .ajout {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -138,22 +138,22 @@ main article div a:hover {
           justify-content: center;
 }
 
-.login form {
+.login form, .ajout form {
   padding: 100px;
-  width: 600px;
+  width: 500px;
 }
 
-.login form .input-group {
+.login form .input-group, .ajout form .input-group {
   margin-bottom: 35px;
   position: relative;
 }
 
-.login form .input-group input[type=text], .login form .input-group input[type=password] {
+.login form .input-group input[type=text], .login form .input-group input[type=password], .ajout form .input-group input[type=text], .ajout form .input-group input[type=password] {
   display: block;
   width: 100%;
   height: 30px;
   border: 0;
-  border-bottom: 2px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
   padding: 1.6rem 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -162,27 +162,38 @@ main article div a:hover {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
   color: #010101;
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
 }
 
-.login form .input-group input[type=text]:focus, .login form .input-group input[type=password]:focus {
-  border-bottom: 2px solid #058CF2;
+.login form .input-group input[type=text]:focus, .login form .input-group input[type=password]:focus, .ajout form .input-group input[type=text]:focus, .ajout form .input-group input[type=password]:focus {
+  border-bottom: 1px solid #058CF2;
 }
 
-.login form .input-group label {
-  position: absolute;
-  top: 35%;
-  font-family: 'Source Sans Pro', sans-serif;
-  color: #858585;
-  pointer-events: none;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.login form .input-group .btnLogin {
-  display: block;
+.login form .input-group textarea, .ajout form .input-group textarea {
   width: 100%;
+  height: 300px;
+}
+
+.login form .input-group label, .ajout form .input-group label {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+}
+
+.login form .input-group div, .ajout form .input-group div {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login form .input-group div .btn, .ajout form .input-group div .btn {
+  display: block;
+  width: 200px;
   padding: 15px 0;
   color: white;
   cursor: pointer;
@@ -198,35 +209,33 @@ main article div a:hover {
   background: #058CF2;
 }
 
-.login form .input-group .btnLogin:hover {
+.login form .input-group div .btn:hover, .ajout form .input-group div .btn:hover {
   -webkit-box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
           box-shadow: 0 5px 17px -2px rgba(108, 108, 108, 0.5);
   background-color: #047de6;
 }
 
-.login form .input-group input:focus + label,
-.login form .input-group input.has-value + label {
-  top: -10px;
-  font-size: 10px;
+.ajout form {
+  padding: 40px;
+  width: 50%;
 }
 
-/*   PAGE MOT-CLÉS   */
-.mot .listeMot {
+/*   TITRE DES PAGES & PAGE MOT-CLÉS   */
+.titrePage {
   border-bottom: 1px solid #dddddd;
   padding-bottom: 20px;
   margin-bottom: 50px;
 }
 
-.mot .listeMot h1 {
+.titrePage h1 {
   font-family: 'Libre Baskerville', serif;
-  margin-bottom: 8px;
-  font-size: 1rem;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
 }
 
-.mot .listeMot a {
+.titrePage a {
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: bold;
   font-size: 0.8rem;
   margin-bottom: 20px;
   color: #858585;
@@ -235,8 +244,13 @@ main article div a:hover {
   transition: color 0.5s;
 }
 
-.mot .listeMot a:hover {
+.titrePage a:hover {
   text-decoration: underline;
   color: #000000;
+}
+
+.titrePage a:nth-of-type(-n+10) {
+  font-size: 1rem;
+  font-weight: bold;
 }
 /*# sourceMappingURL=main.css.map */

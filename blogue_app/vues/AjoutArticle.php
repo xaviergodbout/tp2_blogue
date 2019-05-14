@@ -29,17 +29,35 @@
             </nav>
         </div>
     </header>
-    <main class="ajout">
-        <form method="post" action="index.php" autocomplete="off">
-            <label>Titre *</label>
-            <input type="text" name="titre">
-            <label>Texte *</label>
-            <textarea name="texte"></textarea>
-            <label>Mots clés</label>
-            <input type="text" name="motCle">
-            <input type="hidden" name="action" value="ValideAjout">
-            <input type="submit" value="Ajouter">
-        </form>
+
+    <main>
+        <div class='titrePage'>
+            <h1>Ajouter un article</h1>
+        </div>
+
+        <div class="ajout">
+            <form method="post" action="index.php" autocomplete="off">
+                <div class="input-group">
+                    <input type="text" name="titre" placeholder="Titre">
+                </div>
+
+                <div class="input-group">
+                    <label>Texte *</label>
+                    <textarea name="texte"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="motCle" placeholder="Mots clés (e.g. Sport&Hockey&Canadiens)">
+                </div>
+
+                <input type="hidden" name="action" value="ValideAjout">
+                <div class="input-group">
+                    <div>
+                        <input class="btn" type="submit" value="Ajouter">
+                    </div>
+                </div>
+            </form>
+        </div>
     </main>
 </body>
 </html>

@@ -32,7 +32,7 @@
 
     <main class="mot">
             <?php
-                echo "<div class='listeMot'>";
+                echo "<div class='titrePage'>";
                 echo "<h1>Liste de mot-clés</h1>";
                 while($rangeeMot = mysqli_fetch_assoc($donneeMot)){
                     echo "<a href='index.php?action=MotCle&idMot=" . $rangeeMot["id"] . "'>" . $rangeeMot["mot"] . "</a> ";
