@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     session_start();
 
     if(isset($_REQUEST["action"]))
@@ -55,6 +55,7 @@
                 header("Location: index.php");
             }
             break;
+        //Affiche la page Mots clés
         case "MotCle":
             $donneeMot = GetAllMot();
             if(isset($_GET["idMot"])){
@@ -62,6 +63,7 @@
             }
             require_once("vues/Mot.php");
             break;
+        //Affiche la page ajouter un article
         case "ajoutArticle":
             if(isset($_SESSION['utilisateur'])){
                 require_once("vues/AjoutArticle.php");
@@ -70,6 +72,7 @@
                 require_once("vues/Login.php");
             }
             break;
+        //Valide l'ajoute d'un article
         case "ValideAjout":
             if(isset($_SESSION['utilisateur'])){
                 if(isset($_POST['titre']) && isset($_POST['texte']) && isset($_POST['motcle'])){

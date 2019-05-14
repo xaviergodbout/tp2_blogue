@@ -51,6 +51,12 @@
                         echo "</div>";
                             echo "<h2>Par : " . $rangeeArticle['nom'] . " " . $rangeeArticle['prenom'] . "</h2>";
                         echo "<p>" . $rangeeArticle['texte'] . "</p>";
+                        
+                        $donneeMot = GetMotCleById($rangeeArticle['id']);
+                        
+                        while($rangeeMot = mysqli_fetch_assoc($donneeMot)){
+                            echo "<a href='index.php?action=MotCle&idMot=" . $rangeeMot["id"] . "'>" . $rangeeMot["mot"] . "</a> ";
+                        }
                         echo "</article>";
                     }
                 }

@@ -22,7 +22,7 @@
     {
         global $connexion;
         
-        $requete = "SELECT titre, texte, nom, prenom, idAuteur FROM article JOIN utilisateur ON utilisateur.username = article.idAuteur GROUP BY article.id ORDER BY article.id DESC";
+        $requete = "SELECT id, titre, texte, nom, prenom, idAuteur FROM article JOIN utilisateur ON utilisateur.username = article.idAuteur GROUP BY article.id ORDER BY article.id DESC";
         $resultat = mysqli_query($connexion, $requete);
 
         return $resultat;
@@ -73,7 +73,7 @@
     {
         global $connexion;
         
-        $requete = "SELECT titre, texte, nom, prenom, mot, idAuteur FROM article JOIN utilisateur ON utilisateur.username = article.idAuteur 
+        $requete = "SELECT article.id AS id, titre, texte, nom, prenom, mot, idAuteur FROM article JOIN utilisateur ON utilisateur.username = article.idAuteur 
         JOIN motarticle ON article.id = motarticle.idArticle JOIN motcle ON motcle.id = motarticle.idMotCle 
         WHERE motcle.id = $idMot GROUP BY article.id ORDER BY article.id DESC";
 
@@ -96,6 +96,16 @@
         global $connexion;
 
         $requete = "SELECT id, mot FROM motcle";
+        
+        $resultat = mysqli_query($connexion, $requete);
+
+        return $resultat;
+    }
+
+    function GetMotCleById($idArticle){
+        global $connexion;
+        
+        $requete = "SELECT id, mot FROM motcle JOIN motarticle ON motcle.id = motarticle.idMotCle WHERE idArticle = " . $idArticle . "";
         
         $resultat = mysqli_query($connexion, $requete);
 
