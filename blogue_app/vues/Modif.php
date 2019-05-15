@@ -38,10 +38,10 @@
             <form method='POST' action='index.php'>
                 <?php  $rangeeArticle = mysqli_fetch_assoc($donneeArticle);?>
                 <div class="input-group">
-                    <input type="text" name='titreModif' value='<?php echo $rangeeArticle['titre'] ?>'></input>
+                    <input type="text" name='titreModif' placeholder="Titre" value='<?php echo $rangeeArticle['titre'] ?>'></input>
                 </div>
                 <div class="input-group">
-                    <textarea name='texteModif' rows='20' cols='160'><?php echo $rangeeArticle['texte'] ?></textarea>
+                    <textarea name='texteModif' rows='20' cols='160' placeholder="Votre texte..."><?php echo $rangeeArticle['texte'] ?></textarea>
                 </div>
 
                 <input type='hidden' name='idArticle' value='<?php echo $rangeeArticle['id'] ?>'></input>
