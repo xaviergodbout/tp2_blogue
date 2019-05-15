@@ -58,7 +58,7 @@
         //Affiche la page Mots clés
         case "MotCle":
             $donneeMot = GetAllMot();
-            if(isset($_GET["idMot"])){
+            if(isset($_GET["idMot"]) && is_numeric($_GET["idMot"])){
                 $donneeArticle = GetAllArticleParMotCle($_GET["idMot"]);
             }
             require_once("vues/Mot.php");
@@ -96,23 +96,25 @@
             break;
         //FX case ModifArticle pour se rendre à la page Modification d'article et passer les info de l'article que l'on veut modifier
         case "ModifArticle":
-            if(isset($_SESSION['utilisateur']))
-            {
-                $donneeArticle = GetThisArticleModif($_GET["idArticle"]);
-                require_once("vues/Modif.php");
+            if(isset($_SESSION['utilisateur'])){
+                if(isset($_GET["idArticle"]) && is_numeric($_GET["idArticle"])){
+                    $donneeArticle = GetThisArticleModif($_GET["idArticle"]);
+                    require_once("vues/Modif.php");
+                }
+                else{
+                    header("Location: index.php");
+                }
             }
-            else
-            {
+            else{
                 require_once("vues/Login.php");
             }
             break;
-        
         // FX case Validation de la modification de l'article 
         case "ValideModifArticle":
             if(isset($_SESSION['utilisateur'])){
-                if(isset($_POST["titreModif"]) && isset($_POST["texteModif"]) && isset($_POST['idArticle']))
+                if(isset($_POST["titreModif"]) && isset($_POST["texteModif"]) && isset($_GET['idArticle']))
                 {
-                    ModifNow($_POST["idArticle"], $_POST["titreModif"], $_POST["texteModif"]);
+                    ModifNow($_GET["idArticle"], $_POST["titreModif"], $_POST["texteModif"]);
                     header("Location: index.php");
                 }
                 else

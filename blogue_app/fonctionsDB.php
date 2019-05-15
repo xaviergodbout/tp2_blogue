@@ -169,7 +169,7 @@
         
         $requete = "SELECT article.id, titre, texte, nom, prenom FROM article JOIN utilisateur 
         ON utilisateur.username = article.idAuteur
-        WHERE article.id =  '" . $idArticle . "' ";
+        WHERE article.id = $idArticle";
 
         $resultat = mysqli_query($connexion, $requete);
 
