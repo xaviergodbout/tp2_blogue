@@ -57,6 +57,11 @@
                 </div>
             </form>
         </div>
+        <?php
+            if(isset($erreurs)){
+                echo "<p>* " . $erreurs . "</p>";
+            }
+        ?>
     </main>
 </body>
 </html>

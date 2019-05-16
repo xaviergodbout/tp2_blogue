@@ -32,6 +32,7 @@
     {
         global $connexion;
         
+        $_SESSION["username"] = $utilisateur;
         $requete = "SELECT password FROM utilisateur WHERE username = '" . filtre($utilisateur) . "'";
     
         $resultat = mysqli_query($connexion, $requete);
@@ -182,8 +183,44 @@
         
         $requete = "UPDATE article SET titre='" . filtre($titreModif) . "', texte='" . filtre($texteModif) . "' WHERE id=" . filtre($idArticle) . "";
         $resultat = mysqli_query($connexion, $requete);
+    }
 
-        return $resultat;
+    // Supprimer l'Article completement 
+    function DeleteNow($idArticle)
+    {
+        global $connexion;
+        
+        $requete = "DELETE FROM article WHERE id=" . filtre($idArticle) . "";
+        $resultat = mysqli_query($connexion, $requete);
+    }
+
+    // Supprimer l'article de la table motarticle (liaison motcle & article)  
+    function DeleteNowLink($idArticle)
+    {
+        global $connexion;
+        
+        $requete = "DELETE FROM motarticle WHERE idArticle=" . filtre($idArticle) . "";
+        $resultat = mysqli_query($connexion, $requete);
+    }
+
+    // Fonction pour supprimer tous les mots Cle qui ne se trouve pas dans la table motarticle (donc non utilisé)
+    function NettoyeMotCle()
+    {
+        global $connexion;
+        
+        $requete = "DELETE FROM motcle WHERE id NOT IN (SELECT idMotCle FROM motarticle)";
+        $resultat = mysqli_query($connexion, $requete);
+    }
+
+    function ValideUtilisateurArticle($username, $idArticle)
+    {
+        global $connexion;
+
+        $requete = "SELECT COUNT(1) AS valide FROM article WHERE article.idAuteur = '" . $username . "' AND article.id = " . $idArticle . "";
+        $resultat = mysqli_query($connexion, $requete);
+        $rep = mysqli_fetch_array($resultat);
+
+        return $rep['valide'];
     }
 
     

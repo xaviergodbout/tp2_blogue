@@ -51,6 +51,11 @@
                 </div>
             </form>
         </div>
+        <?php
+            if(isset($erreurs)){
+                echo "<p>* " . $erreurs . "</p>";
+            }
+        ?>
     </main>
 </body>
 <script src="vues/js/label.js"></script>

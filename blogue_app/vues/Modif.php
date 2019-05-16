@@ -38,22 +38,28 @@
             <form method='POST' action='index.php'>
                 <?php  $rangeeArticle = mysqli_fetch_assoc($donneeArticle);?>
                 <div class="input-group">
-                    <input type="text" name='titreModif' placeholder="Titre" value='<?php echo $rangeeArticle['titre'] ?>'></input>
+                    <input type="text" name='titreModif' placeholder="Titre" value='<?php echo $rangeeArticle['titre'] ?>'>
                 </div>
                 <div class="input-group">
                     <textarea name='texteModif' rows='20' cols='160' placeholder="Votre texte..."><?php echo $rangeeArticle['texte'] ?></textarea>
                 </div>
 
-                <input type='hidden' name='idArticle' value='<?php echo $rangeeArticle['id'] ?>'></input>
+                <input type='hidden' name='idArticle' value='<?php echo $rangeeArticle['id'] ?>'>
                 <input type='hidden' name='action' value='ValideModifArticle'/>
 
                 <div class="input-group">
                     <div>
-                        <input class="btn" type='submit' value='Modifier'>
+                        <input class="btn" type='submit' name='Modifier' value='Modifier'>
+                        <input class="btn" type='submit' name='Supprimer' value='Supprimer'>
                     </div>
                 </div>
             </form>
         </div>
+        <?php
+            if(isset($erreurs)){
+                echo "<p>* " . $erreurs . "</p>";
+            }
+        ?>
     </main>
 </body>
 </html>

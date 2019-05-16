@@ -94,11 +94,15 @@
                 require_once("vues/AjoutArticle.php");
             }
             break;
-        //FX case ModifArticle pour se rendre à la page Modification d'article et passer les info de l'article que l'on veut modifier
+        //Case ModifArticle pour se rendre à la page Modification d'article et passer les info de l'article que l'on veut modifier
         case "ModifArticle":
             if(isset($_SESSION['utilisateur'])){
                 if(isset($_GET["idArticle"]) && is_numeric($_GET["idArticle"])){
-                    $donneeArticle = GetThisArticleModif($_GET["idArticle"]);
+                    $donneeArticle = GetThisArticleModif($_REQUEST["idArticle"]);
+                    //Passe l'id de l'article à modifier en SESSION 
+                    $_SESSION["idArticleModif"] = $_REQUEST["idArticle"];
+                    //Valide le droit de l'utilisateur sur l'article et met la reponse dans $_SESSION['droitModif']
+                    $_SESSION['droitModif'] = ValideUtilisateurArticle($_SESSION["utilisateur"], $_SESSION["idArticleModif"]);
                     require_once("vues/Modif.php");
                 }
                 else{
@@ -109,20 +113,59 @@
                 require_once("vues/Login.php");
             }
             break;
-        // FX case Validation de la modification de l'article 
+        //Case Validation de la modification de l'article 
         case "ValideModifArticle":
             if(isset($_SESSION['utilisateur'])){
-                if(isset($_POST["titreModif"]) && isset($_POST["texteModif"]) && isset($_GET['idArticle']))
-                {
-                    ModifNow($_GET["idArticle"], $_POST["titreModif"], $_POST["texteModif"]);
-                    header("Location: index.php");
+                $donneeArticle = GetThisArticleModif($_SESSION["idArticleModif"]);
+             
+                if($_SESSION['droitModif'] == 1){
+                //Pour modifier Article
+                    if(isset($_POST['Modifier'])){
+                        
+                        if(isset($_POST["titreModif"]) && isset($_POST["texteModif"]) && isset($_SESSION["idArticleModif"])){
+                            
+                            if(trim($_POST['titreModif']) != "" && trim($_POST['texteModif']) != ""){
+                                ModifNow($_SESSION["idArticleModif"], $_POST["titreModif"], $_POST["texteModif"]);
+                                header("Location: index.php");
+                            }
+                            else{//L'erreur si l'input ne répond pas au trim
+                                $erreurs = "Veuillez remplir tous les champs obligatoires.";
+                                require_once("vues/Modif.php");   
+                            }
+                        }      
+                    }
                 }
-                else
-                {
-                    $erreurs = "Veuillez remplir tous les champs obligatoires.";
+                else{//L'erreur si l'utilisateur n'a pas les droits sur l'article
+                    $erreurs = "Vous n'avez pas les droits sur cet article.";
                     require_once("vues/Modif.php");
                 }
             }
+            else{
+                //Pour supprimer Article
+                if(isset($_SESSION['utilisateur'])){
+                    if($_SESSION['droitModif'] == 1){
+                        if(isset($_POST['Supprimer'])){
+                        
+                            if(isset($_POST['idArticle'])){
+                                DeleteNowLink($_POST['idArticle']);
+                                DeleteNow($_POST['idArticle']);
+                                NettoyeMotCle();
+                                header("Location: index.php");
+                            }
+                            else{
+                                $erreurs = "Veuillez remplir tous les champs obligatoires.";
+                                require_once("vues/Modif.php");
+                            }
+                        }
+                    }
+                    else{//L'erreur si l'utilisateur n'a pas les droits sur l'article
+                        $erreurs = "Vous n'avez pas les droits sur cet article.";
+                        require_once("vues/Modif.php");
+                    }
+                }
+            }
+        
+    
             break;
         case "Logout":
             //vider le tableau $_SESSION
