@@ -13,6 +13,7 @@
     require_once("fonctionsDB.php");
 
     switch($action){
+        
         //Aller a la page acceuil
         case "Accueil":
             $donneeArticle = GetAllArticle();
@@ -27,8 +28,9 @@
                 header("Location: index.php");
             }
             break;
+
+        //vérifier la combinaison username/password
         case "Verifier":
-            //vérifier la combinaison username/password
             if(isset($_POST["username"]) && isset($_POST["password"]))
             {
                 $resultat = Authentification($_POST["username"], $_POST["password"]);
@@ -55,6 +57,7 @@
                 header("Location: index.php");
             }
             break;
+
         //Affiche la page Mots clés
         case "MotCle":
             $donneeMot = GetAllMot();
@@ -63,6 +66,7 @@
             }
             require_once("vues/Mot.php");
             break;
+
         //Affiche la page ajouter un article
         case "ajoutArticle":
             if(isset($_SESSION['utilisateur'])){
@@ -72,6 +76,7 @@
                 require_once("vues/Login.php");
             }
             break;
+
         //Valide l'ajoute d'un article
         case "ValideAjout":
             if(isset($_SESSION['utilisateur'])){
@@ -94,6 +99,7 @@
                 require_once("vues/AjoutArticle.php");
             }
             break;
+
         //Case ModifArticle pour se rendre à la page Modification d'article et passer les info de l'article que l'on veut modifier
         case "ModifArticle":
             if(isset($_SESSION['utilisateur'])){
@@ -113,17 +119,17 @@
                 require_once("vues/Login.php");
             }
             break;
+
         //Case Validation de la modification de l'article 
         case "ValideModifArticle":
             if(isset($_SESSION['utilisateur'])){
                 $donneeArticle = GetThisArticleModif($_SESSION["idArticleModif"]);
-             
+                //$_SESSION['droitModif'] Valide le droit de l'utilisateur sur l'article
                 if($_SESSION['droitModif'] == 1){
-                //Pour modifier Article
                     if(isset($_POST['Modifier'])){
                         
                         if(isset($_POST["titreModif"]) && isset($_POST["texteModif"]) && isset($_SESSION["idArticleModif"])){
-                            
+                                    
                             if(trim($_POST['titreModif']) != "" && trim($_POST['texteModif']) != ""){
                                 ModifNow($_SESSION["idArticleModif"], $_POST["titreModif"], $_POST["texteModif"]);
                                 header("Location: index.php");
@@ -134,52 +140,39 @@
                             }
                         }      
                     }
+                    elseif(isset($_POST['Supprimer'])){
+                        if(isset($_POST['idArticle'])){
+                            DeleteNowLink($_POST['idArticle']);
+                            DeleteNow($_POST['idArticle']);
+                            NettoyeMotCle();
+                            header("Location: index.php");
+                        }
+                        else{
+                            $erreurs = "Veuillez remplir tous les champs obligatoires.";
+                            require_once("vues/Modif.php");
+                        }
+                    }
                 }
                 else{//L'erreur si l'utilisateur n'a pas les droits sur l'article
                     $erreurs = "Vous n'avez pas les droits sur cet article.";
                     require_once("vues/Modif.php");
                 }
             }
-            else{
-                //Pour supprimer Article
-                if(isset($_SESSION['utilisateur'])){
-                    if($_SESSION['droitModif'] == 1){
-                        if(isset($_POST['Supprimer'])){
-                        
-                            if(isset($_POST['idArticle'])){
-                                DeleteNowLink($_POST['idArticle']);
-                                DeleteNow($_POST['idArticle']);
-                                NettoyeMotCle();
-                                header("Location: index.php");
-                            }
-                            else{
-                                $erreurs = "Veuillez remplir tous les champs obligatoires.";
-                                require_once("vues/Modif.php");
-                            }
-                        }
-                    }
-                    else{//L'erreur si l'utilisateur n'a pas les droits sur l'article
-                        $erreurs = "Vous n'avez pas les droits sur cet article.";
-                        require_once("vues/Modif.php");
-                    }
-                }
-            }
-        
-    
             break;
+            
         case "Logout":
-            //vider le tableau $_SESSION
-            $_SESSION = array();
-            
-            //supprimer le cookie de session
-            if(isset($_COOKIE[session_name()]))
-            {
-                setcookie(session_name(), '', time() - 3600);
-            }
-            
-            //détruire la session complètement
-            session_destroy();
-            header("Location: index.php");
-            break;
+        //vider le tableau $_SESSION
+        $_SESSION = array();
+        
+        //supprimer le cookie de session
+        if(isset($_COOKIE[session_name()]))
+        {
+            setcookie(session_name(), '', time() - 3600);
         }
+        
+        //détruire la session complètement
+        session_destroy();
+        header("Location: index.php");
+        break;
+    }
 ?>
