@@ -1,9 +1,6 @@
 <?php
-    /*
-        FonctionsDB.php est le fichier qui représente notre MODÈLE dans notre architecture MVC-lite. C'est donc dnas ce fichier que nous retrouverons TOUTES les requêtes SQL SANS AUCUNE EXCEPTION. C'est aussi ici que nous retoruverons la connexion à la base de données et les informations nécessaires à celle-ci (hostname, username, password, base de données, etc.)  
-    
-    */
 
+    //Connexion a la base de données
     function connectDB()
     {
         $c = mysqli_connect("localhost", "root", "", "blogue");
@@ -18,6 +15,7 @@
 
     $connexion = connectDB();
 
+    //Cherche tout les articles pour affichage sur l'accueil
     function GetAllArticle()
     {
         global $connexion;
@@ -28,6 +26,7 @@
         return $resultat;
     }
 
+    //Authentification au login
     function Authentification($utilisateur, $password)
     {
         global $connexion;
@@ -60,6 +59,7 @@
         return $varFiltre;
     }
 
+    //Cherche tout les mots clés en orde des plus utilisés
     function GetAllMot()
     {
         global $connexion;
@@ -70,6 +70,7 @@
         return $resultat;
     }
 
+    //Cherche les articles avec l'id d'un mot clé
     function GetAllArticleParMotCle($idMot)
     {
         global $connexion;
@@ -82,7 +83,8 @@
 
         return $resultat;
     }
-
+    
+    //Ajoute un article
     function AjoutArticle($titre, $texte, $auteur){
         
         global $connexion;
@@ -92,6 +94,7 @@
         $resultat = mysqli_query($connexion, $requete);
     }
 
+    //Cherche tous les mots clés dans la base de données
     function GetAllMotCle(){
 
         global $connexion;
@@ -103,6 +106,7 @@
         return $resultat;
     }
 
+    //Cherche tous les mots clés pour un article
     function GetMotCleById($idArticle){
         global $connexion;
         
@@ -113,6 +117,7 @@
         return $resultat;
     }
 
+    //Cherche le dernier article enregistrer avec le max ID
     function idDernierArticle(){
         global $connexion;
         
@@ -123,6 +128,7 @@
         return $resultat;
     }
 
+    //Cherche mot clé par id
     function GetMotId($mot_cle){
 
         global $connexion;
@@ -134,6 +140,7 @@
         return $resultat;
     }
 
+    //Funtion ajouter des mots clés et associer les mots clés avec l'article
     function AjoutMotCle($mot){
 
         global $connexion;
