@@ -150,6 +150,17 @@ main article .motCle a:hover {
   color: #058CF2;
 }
 
+p.erreur {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #e62d04;
+  padding: 10px;
+  border: 1px solid #e62d046d;
+  border-radius: 3px;
+  margin-bottom: 25px;
+}
+
 /*   FORMS   */
 .login, .ajout, .modif {
   display: -webkit-box;
@@ -251,8 +262,29 @@ main article .motCle a:hover {
   background-color: #047de6;
 }
 
-.ajout form, .modif form {
+.ajout form {
   padding: 40px;
+  width: 50%;
+}
+
+.modif form {
+  width: 100%;
+  padding: 0;
+}
+
+.modif form .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modif form .wrapper .modifInput {
   width: 50%;
 }
 
@@ -293,5 +325,41 @@ main article .motCle a:hover {
 .titrePage .actif {
   text-decoration: underline;
   color: #000000;
+}
+
+.titrePage .btnSupprimer {
+  display: block;
+  width: 200px;
+  padding: 15px 0;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #dddddd;
+  border-radius: 35px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 0.8rem;
+  color: #858585;
+  -webkit-transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+  transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.titrePage .btnSupprimer:hover {
+  color: #e62d04;
+  border: 1px solid #e62d04;
+}
+
+.supprimer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=main.css.map */

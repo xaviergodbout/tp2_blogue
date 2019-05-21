@@ -36,6 +36,11 @@
         </div>
         <div class="login">
             <form method="post" action="index.php">
+                <?php
+                    if(isset($erreurs)){
+                        echo "<p class='erreur'>* " . $erreurs . "</p>";
+                    }
+                ?>
                 <div class="input-group">
                     <input type="text" name="username" placeholder="Nom d'utilisateur :">
                 </div>
@@ -51,12 +56,6 @@
                 </div>
             </form>
         </div>
-        <?php
-            if(isset($erreurs)){
-                echo "<p>* " . $erreurs . "</p>";
-            }
-        ?>
     </main>
 </body>
-<script src="vues/js/label.js"></script>
 </html>

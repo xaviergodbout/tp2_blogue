@@ -31,35 +31,50 @@
     </header>
 
     <main>
-        <div class='titrePage'>
-            <h1>Modifier un article</h1>
-        </div>
         <div class="modif">
             <form method='POST' action='index.php'>
-                <?php  $rangeeArticle = mysqli_fetch_assoc($donneeArticle);?>
-                <div class="input-group">
-                    <input type="text" name='titreModif' placeholder="Titre" value='<?php echo $rangeeArticle['titre'] ?>'>
-                </div>
-                <div class="input-group">
-                    <textarea name='texteModif' rows='20' cols='160' placeholder="Votre texte..."><?php echo $rangeeArticle['texte'] ?></textarea>
-                </div>
+                <div class='titrePage supprimer'>
+                    <h1>Modifier un article</h1>
 
-                <input type='hidden' name='idArticle' value='<?php echo $rangeeArticle['id'] ?>'>
-                <input type='hidden' name='action' value='ValideModifArticle'/>
+                    <!--  Bouton Supprimer  -->
+                    <input class="btnSupprimer" type='submit' name='Supprimer' value='Supprimer'>
+                </div>
+                
+                <div class="wrapper">
+                    <div class="modifInput">
+                        <!--  Message d'erreurs  -->
+                        <?php
+                            if(isset($erreurs)){
+                                echo "<p class='erreur'>* " . $erreurs . "</p>";
+                            }
+                        
+                            $rangeeArticle = mysqli_fetch_assoc($donneeArticle);
+                        ?>
 
-                <div class="input-group">
-                    <div>
-                        <input class="btn" type='submit' name='Modifier' value='Modifier'>
-                        <input class="btn" type='submit' name='Supprimer' value='Supprimer'>
+                        <!--  Modification Titre  -->
+                        <div class="input-group">
+                            <input type="text" name='titreModif' placeholder="Titre" value='<?php echo $rangeeArticle['titre'] ?>'>
+                        </div>
+
+                        <!--  Modification Texte  -->
+                        <div class="input-group">
+                            <textarea name='texteModif' rows='20' cols='160' placeholder="Votre texte..."><?php echo $rangeeArticle['texte'] ?></textarea>
+                        </div>
+
+                        <!--  Input Hidden -->
+                        <input type='hidden' name='idArticle' value='<?php echo $rangeeArticle['id'] ?>'>
+                        <input type='hidden' name='action' value='ValideModifArticle'/>
+
+                        <!--  Bouton Enregistrer  -->
+                        <div class="input-group">
+                            <div>
+                                <input class="btn" type='submit' name='Modifier' value='Enregistrer'>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
-        <?php
-            if(isset($erreurs)){
-                echo "<p>* " . $erreurs . "</p>";
-            }
-        ?>
     </main>
 </body>
 </html>

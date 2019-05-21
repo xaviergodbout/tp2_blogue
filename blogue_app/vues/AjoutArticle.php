@@ -37,12 +37,17 @@
 
         <div class="ajout">
             <form method="post" action="index.php">
+                <?php
+                    if(isset($erreurs)){
+                        echo "<p class='erreur'>* " . $erreurs . "</p>";
+                    }
+                ?>
                 <div class="input-group">
-                    <input type="text" name="titre" placeholder="Titre">
+                    <input type="text" name="titre" placeholder="Titre *">
                 </div>
 
                 <div class="input-group">
-                    <textarea name="texte" placeholder="Votre texte..."></textarea>
+                    <textarea name="texte" placeholder="Votre texte... *"></textarea>
                 </div>
 
                 <div class="input-group">
@@ -57,11 +62,6 @@
                 </div>
             </form>
         </div>
-        <?php
-            if(isset($erreurs)){
-                echo "<p>* " . $erreurs . "</p>";
-            }
-        ?>
     </main>
 </body>
 </html>
