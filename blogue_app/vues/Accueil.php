@@ -42,7 +42,7 @@
                     }
                 }
                 echo "</div>";
-                    echo "<h2>Par : " . $rangeeArticle['nom'] . " " . $rangeeArticle['prenom'] . "</h2>";
+                    echo "<h2>Par : " . $rangeeArticle['prenom'] . " " . $rangeeArticle['nom'] . "</h2>";
                 echo "<p>" . $rangeeArticle['texte'] . "</p>";
 
                 $donneeMot = GetMotCleById($rangeeArticle['id']);
