@@ -17,58 +17,114 @@
     transition: $transition $temp;
 }
 
+@mixin for-size($size) {
+    @if $size == phone {
+      @media (max-width: 600px) { @content; }
+    } @else if $size == tablet {
+      @media (max-width: 992px) { @content; }
+    }
+}
+
 /*   HEADER   */
-header {
-    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);
-    background: #ffffff;
-    position: fixed;
-    width: 100vw;
-    z-index: 1000;
-    font-family: 'Source Sans Pro', sans-serif;
-    .wrapper {
-        @include displayFlex(); 
-        @include justifyContent();
-        width: 90%;
-        margin: auto;
-        /* logo */
-        img {
-            width: 60px;
-            margin: 15px 15px 15px 0;
-        }
-        /* nav */
-        nav {
+
+    header {
+        box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+        background: #ffffff;
+        position: fixed;
+        width: 100vw;
+        z-index: 1000;
+        font-family: 'Source Sans Pro', sans-serif;
+        .wrapper {
             @include displayFlex(); 
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            ul {
+            @include justifyContent();
+            width: 90%;
+            margin: auto;
+            #btnControl {
+                display: none;
+            }
+            #btnControl:checked ~ nav {
+                display: block;
+            }
+            @include for-size(phone) {
+                flex-direction: column; 
+                position: relative;
+                #btnControl:checked ~ nav {
+                    display: block;
+                }
+                label {
+                    position: absolute;
+                    top: 23px;
+                    right: 0;
+                }    
+            }
+            .menuMobile {
+                display: none;
+                @include for-size(phone) {    
+                    display: block; 
+                }
+            }
+            /* logo */
+            a{
+                
+                img {
+                    width: 60px;
+                    margin: 15px 15px 15px 0;
+                    @include for-size(phone) {  
+                        width: 30px;  
+                    }
+                }
+            }
+            /* nav */
+            nav {
                 @include displayFlex(); 
                 -webkit-box-align: center;
                 -ms-flex-align: center;
                 align-items: center;
-                li {
-                    list-style: none;
-                    margin-left: 25px;
+                @include for-size(phone) {    
+                    display: none; 
                 }
-                a {
-                    text-decoration: none;
-                    color: #656565;
-                    @include transition(color, 0.5s); 
-                    &:hover {
-                    text-decoration: underline;
-                    color: #000000;
+                ul {
+                    @include displayFlex(); 
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    @include for-size(phone) {    
+                        flex-direction: column;
+                        margin: auto;
+                    }
+                    li {
+                        list-style: none;
+                        margin-left: 25px;
+                        @include for-size(phone) {
+                            margin: 0;
+                            padding-bottom: 20px;
+                        }
+                    }
+                    a {
+                        text-decoration: none;
+                        color: #656565;
+                        @include transition(color, 0.5s); 
+                        @include for-size(phone) {    
+                            font-size: 0.8rem; 
+                        }
+                        &:hover {
+                        text-decoration: underline;
+                        color: #000000;
+                        }
                     }
                 }
-            }
-        }             
+            }             
+        }
     }
-}
 
 /*   MAIN   */
 main {
     width: 90%;
     margin: auto;
     padding-top: 150px;
+    @include for-size(phone) {    
+        padding-top: 100px; 
+    }
     article {
         width: 60%;
         margin: 0 auto 100px auto;
@@ -152,6 +208,14 @@ p.erreur{
     form {
         padding: 100px;
         width: 500px;
+        @include for-size(tablet) {    
+            width: 40%; 
+            padding: 0;
+        }
+        @include for-size(phone) {    
+            width: 60%; 
+            padding: 0;
+        }
         .input-group {
             margin-bottom: 35px;
             position: relative;
@@ -221,7 +285,12 @@ p.erreur{
 .ajout {
     form {
         padding: 40px;
-        width: 50%; 
+        width: 50%;
+        max-width: 800px;
+        @include for-size(tablet) {    
+            width: 80%; 
+            padding: 0;
+        }
     }
 }
 .modif {
@@ -234,6 +303,10 @@ p.erreur{
             justify-content: center;
             .modifInput {
                 width: 50%;
+                @include for-size(tablet) {    
+                    width: 80%; 
+                    padding: 0;
+                }
             }
         }
     }

@@ -12,6 +12,9 @@
     <header>
         <div class="wrapper">
             <a href="index.php"><img src="vues/img/logo.svg" alt="Logo Blog"></a>
+            <!-- Menu mobile -->
+            <input class="menuMobile" type="checkbox" id="btnControl"/>
+            <label class="btn menuMobile" for="btnControl"><img src="vues/img/menu.svg" height="15"/></label>
             <nav>
                 <?php
                     echo "<ul>";
@@ -32,6 +35,7 @@
 
     <main class="mot">
             <?php
+                //Titre de la page
                 echo "<div class='titrePage'>";
                 echo "<h1>Liste de mot-clés</h1>";
                 while($rangeeMot = mysqli_fetch_assoc($donneeMot)){

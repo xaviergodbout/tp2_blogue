@@ -12,14 +12,19 @@
     <header>
         <div class="wrapper">
             <a href="index.php"><img src="vues/img/logo.svg" alt="Logo Blog"></a>
+            <!-- Menu mobile -->
+            <input class="menuMobile" type="checkbox" id="btnControl"/>
+            <label class="btn menuMobile" for="btnControl"><img src="vues/img/menu.svg" height="15"/></label>
             <nav>
                 <?php
                     echo "<ul>";
                     echo "<li><a href=index.php>Accueil</a></li>";
                     echo "<li><a href=index.php?action=MotCle>Mots clés</a></li>";
+                    //Si pas connecté
                     if(!isset($_SESSION['utilisateur'])){
                         echo "<li><a href=index.php?action=Login>Se connecter</a></li>";
                     }
+                    //Si connecté
                     if(isset($_SESSION['utilisateur'])){
                         echo "<li><a href=index.php?action=ajoutArticle>Ajouter un article</a></li>";
                         echo "<li><a href=index.php?action=Logout>Se déconnecter</a></li>";
@@ -33,9 +38,9 @@
     <main>
         <div class="modif">
             <form method='POST' action='index.php'>
+                <!--  Titre de la page  -->
                 <div class='titrePage supprimer'>
                     <h1>Modifier un article</h1>
-
                     <!--  Bouton Supprimer  -->
                     <input class="btnSupprimer" type='submit' name='Supprimer' value='Supprimer'>
                 </div>
